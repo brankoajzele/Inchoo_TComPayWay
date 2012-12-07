@@ -106,6 +106,7 @@
                 <order_status><![CDATA[pending]]></order_status>
                 <payed_order_status><![CDATA[processing]]></payed_order_status>
                 <canceled_order_status><![CDATA[canceled]]></canceled_order_status>
+                <payment_type><![CDATA[auto]]></payment_type>
                 <auto_invoice_payed_order>0</auto_invoice_payed_order>
                 <auto_ship_invoiced_order>0</auto_ship_invoiced_order>
                 <debug_mode>0</debug_mode>

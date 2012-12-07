@@ -32,6 +32,7 @@ class Inchoo_TComPayWay_Helper_Redirect extends Mage_Payment_Helper_Data
     const XML_PATH_ORDER_STATUS = 'payment/inchoo_tcompayway_redirect/order_status';
     const XML_PATH_PAYED_ORDER_STATUS = 'payment/inchoo_tcompayway_redirect/payed_order_status';
     const XML_PATH_CANCELED_ORDER_STATUS = 'payment/inchoo_tcompayway_redirect/canceled_order_status';
+    const XML_PATH_PAYMENT_TYPE = 'payment/inchoo_tcompayway_redirect/payment_type';
     const XML_PATH_AUTO_INVOICE_PAYED_ORDER = 'payment/inchoo_tcompayway_redirect/auto_invoice_payed_order';
     const XML_PATH_AUTO_SHIP_INVOICED_ORDER = 'payment/inchoo_tcompayway_redirect/auto_ship_invoiced_order';
     const XML_PATH_PAYMENT_STEP_INFORMATION = 'payment/inchoo_tcompayway_redirect/payment_step_information';
@@ -137,11 +138,24 @@ class Inchoo_TComPayWay_Helper_Redirect extends Mage_Payment_Helper_Data
     
     public function getAutomaticallyInvoicePayedOrder() 
     {
-            return (bool)((int)Mage::getStoreConfig(self::XML_PATH_AUTO_INVOICE_PAYED_ORDER));
+        if ($this->getPaymentType() === Inchoo_TComPayWay_Model_System_Config_Source_Payment_Type::TYPE_MANUAL) {
+            return false;
+        }
+        
+        return (bool)((int)Mage::getStoreConfig(self::XML_PATH_AUTO_INVOICE_PAYED_ORDER));
     }
     
     public function getAutomaticallyShipInvoicedOrder() 
     {
-            return (bool)((int)Mage::getStoreConfig(self::XML_PATH_AUTO_SHIP_INVOICED_ORDER));
-    }    
+        if (!$this->getAutomaticallyInvoicePayedOrder()) {
+            return false;
+        }
+        
+        return (bool)((int)Mage::getStoreConfig(self::XML_PATH_AUTO_SHIP_INVOICED_ORDER));
+    }   
+    
+    public function getPaymentType() 
+    {
+            return Mage::getStoreConfig(self::XML_PATH_PAYMENT_TYPE);
+    }
 }

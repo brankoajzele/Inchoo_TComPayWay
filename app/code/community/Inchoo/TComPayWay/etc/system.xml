@@ -78,7 +78,17 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                        </canceled_order_status>   
+                        </canceled_order_status> 
+                        <payment_type>
+                            <label>Payment Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>inchoo_tcompayway/system_config_source_payment_type</source_model>
+                            <comment><![CDATA[Manual – narudžba će biti predautorizirana, dok će se stvarna naplata morati ručno odraditi kroz administracijski alat. Auto - narudžba je automatski autorizirana te naplaćena bez potrebe za dodatnim intervencijama.]]></comment>
+                            <sort_order>71</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_type>                            
                         <auto_invoice_payed_order translate="label">
                             <label>Invoice</label>
                             <comment><![CDATA[If set to Yes, all payed orders will be automatically invoiced.]]></comment>
@@ -88,6 +98,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <depends><payment_type>auto</payment_type></depends>
                         </auto_invoice_payed_order>
                         <auto_ship_invoiced_order>
                             <label>Ship</label>
@@ -98,7 +109,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <depends><auto_invoice_payed_order>1</auto_invoice_payed_order></depends>                            
+                            <depends><auto_invoice_payed_order>1</auto_invoice_payed_order></depends>
                         </auto_ship_invoiced_order>
                         <debug_mode translate="label">
                             <label>Debug Mode</label>

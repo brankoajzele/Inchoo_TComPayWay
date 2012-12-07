@@ -96,8 +96,12 @@ class Inchoo_TComPayWay_RedirectController extends Mage_Core_Controller_Front_Ac
                         $this->_redirect('no-route');
                         return;
                     }
-
-                    $comment = $helper->__('PayWay system successfully charged %s card, transaction signature id %s.', $card, $sig);
+                    
+                    if ($helper->getPaymentType() === Inchoo_TComPayWay_Model_System_Config_Source_Payment_Type::TYPE_MANUAL) {
+                        $comment = $helper->__('PayWay system successfully authorized %s card. Transaction signature %s.', $card, $sig);                        
+                    } else {
+                        $comment = $helper->__('PayWay system successfully authorized and captured %s card. Transaction signature %s.', $card, $sig);                        
+                    }
                     
                     $order->setState(Mage_Sales_Model_Order::STATE_PROCESSING);
                     $order->setStatus($helper->getOrderStatusConfig());

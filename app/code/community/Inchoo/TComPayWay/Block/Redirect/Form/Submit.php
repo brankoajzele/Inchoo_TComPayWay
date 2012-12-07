@@ -55,7 +55,7 @@ class Inchoo_TComPayWay_Block_Redirect_Form_Submit extends Mage_Core_Block_Templ
         $form->addField('CustomerCountry', 'hidden', array('name'=>'CustomerCountry', 'value'=>$billingAddress->getCountryId()));
         $form->addField('CustomerPhone', 'hidden', array('name'=>'CustomerPhone', 'value'=>$billingAddress->getTelephone()));
         $form->addField('CustomerEmail', 'hidden', array('name'=>'CustomerEmail', 'value'=>$billingAddress->getEmail()));
-        $form->addField('PaymentType', 'hidden', array('name'=>'PaymentType', 'value'=>'manual'));
+        $form->addField('PaymentType', 'hidden', array('name'=>'PaymentType', 'value'=>$helper->getPaymentType()));
         $form->addField('Installments', 'hidden', array('name'=>'Installments', 'value'=>'N'));
 
         $idSuffix = Mage::helper('core')->uniqHash();
