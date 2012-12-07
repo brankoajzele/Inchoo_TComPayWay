@@ -63,8 +63,6 @@ class Inchoo_TComPayWay_Helper_Redirect extends Mage_Payment_Helper_Data
         $sk = $this->getSecretKey();
         $sig = $shopId . $sk . $shoppingCartId . $sk . $totalAmount . $sk;
 
-        Mage::log($sig, null, 'signature.log', true);
-
         $sigEncrypted = md5($sig);
 
         return $sigEncrypted;

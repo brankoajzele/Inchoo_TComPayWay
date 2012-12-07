@@ -72,8 +72,6 @@ class Inchoo_TComPayWay_Model_Redirect extends Mage_Payment_Model_Method_Abstrac
         $stateObject->setState(Mage_Sales_Model_Order::STATE_NEW);
         $stateObject->setStatus('pending');
         $stateObject->setIsNotified(false);
-
-        Mage::log('test', null, 'test123.txt', true);
         
         return $this;
     }     
