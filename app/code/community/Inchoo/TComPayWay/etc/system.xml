@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright (c) Branko Ajzele
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <inchoo_tcompayway_redirect translate="label" module="inchoo_tcompayway">
+                    <label>T-Com Pay Way Redirect</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <post_url>
+                            <label>POST Url</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </post_url>
+                        <shop_id translate="label">
+                            <label>Shop ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shop_id>
+                        <secret_key translate="label">
+                            <label>Secret Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </secret_key>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>inchoo_tcompayway/system_config_source_order_status</source_model>
+                            <comment><![CDATA[Basically 3 order states are in question here: new, pending_payment, processing. If you create a custom status, under "System > Order Statuses", for one of these states that status will appear here on the drop-down list and you can select it. Default state is "new", which if you look at "System > Order Statuses" has assigned "Pending" label. This status applies to order that gets created right before you are redirected to PayWay.]]></comment>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <payed_order_status translate="label">
+                            <label>Payed Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>inchoo_tcompayway/system_config_source_order_payed_status</source_model>
+                            <comment><![CDATA[Basically 1 order state is in question here: processing. If you create a custom status, under "System > Order Statuses", for one of this state that status will appear here on the drop-down list and you can select it. Default state is "processing", which if you look at "System > Order Statuses" has assigned "Processing" label. This status applies to order after you successfully payed it on PayWay site and got redirected back to Magento.]]></comment>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payed_order_status>
+                        <canceled_order_status translate="label">
+                            <label>Canceled Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>inchoo_tcompayway/system_config_source_order_canceled_status</source_model>
+                            <comment><![CDATA[Basically 1 order state is in question here: canceled. If you create a custom status, under "System > Order Statuses", for one of this state that status will appear here on the drop-down list and you can select it. Default state is "canceled", which if you look at "System > Order Statuses" has assigned "Canceled" label. This status applies to order only if you clicked Cancel on PayWay site and got redirected back to Magento.]]></comment>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </canceled_order_status>   
+                        <auto_invoice_payed_order translate="label">
+                            <label>Invoice</label>
+                            <comment><![CDATA[If set to Yes, all payed orders will be automatically invoiced.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </auto_invoice_payed_order>
+                        <auto_ship_invoiced_order>
+                            <label>Ship</label>
+                            <comment><![CDATA[If set to Yes, all invoiced orders will be automatically shipped and order will get to complete state.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends><auto_invoice_payed_order>1</auto_invoice_payed_order></depends>                            
+                        </auto_ship_invoiced_order>
+                        <debug_mode translate="label">
+                            <label>Debug Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </debug_mode>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                        <payment_step_information translate="label">
+                            <label>Payment Step Information</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment><![CDATA[HTML content to add to Onepage Checkout > Payment Information step, right under the T-Com Pay Way method.]]></comment>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_step_information>
+                        <payment_progress_information translate="label">
+                            <label>Payment Progress Information</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment><![CDATA[HTML content to add to Onepage Checkout > "Your Checkout Progress" sidebar area.]]></comment>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_progress_information>                        
+                    </fields>
+                </inchoo_tcompayway_redirect>
+                <inchoo_tcompayway_onsite translate="label" module="inchoo_tcompayway">
+                    <label>T-Com Pay Way OnSite</label>
+                    <sort_order>670</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active>
+                        <post_url>
+                            <label>POST Url</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </post_url>
+                        <shop_id translate="label">
+                            <label>Shop ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shop_id>
+                        <secret_key translate="label">
+                            <label>Secret key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </secret_key>
+                        <payment_action translate="label">
+                            <label>Payment Action</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>paygate/authorizenet_source_paymentAction</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </payment_action>
+                        <cctypes translate="label">
+                            <label>Credit Card Types</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>paygate/authorizenet_source_cctype</source_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cctypes>
+                        <order_status translate="label">
+                            <label>New order status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status_processing</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <invoice translate="label">
+                            <label>Invoice</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </invoice>
+                        <debug_mode translate="label">
+                            <label>Debug mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </debug_mode>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </title>
+                    </fields>
+                </inchoo_tcompayway_onsite>
+            </groups>
+        </payment>
+    </sections>
+</config>

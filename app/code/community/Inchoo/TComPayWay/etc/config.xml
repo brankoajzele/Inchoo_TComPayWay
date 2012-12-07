@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright   Copyright (c) Branko Ajzele
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Inchoo_TComPayWay>
+            <version>1.0.0.0.0.0</version>
+        </Inchoo_TComPayWay>
+    </modules>
+    <global>
+        <models>
+            <inchoo_tcompayway>
+                <class>Inchoo_TComPayWay_Model</class>
+            </inchoo_tcompayway>
+        </models>
+        <helpers>
+            <inchoo_tcompayway>
+                <class>Inchoo_TComPayWay_Helper</class>
+            </inchoo_tcompayway>
+        </helpers>
+        <resources>
+            <inchoo_tcompayway_setup>
+                <setup>
+                    <module>Inchoo_TComPayWay</module>
+                </setup>
+            </inchoo_tcompayway_setup>
+        </resources>
+        <blocks>
+            <inchoo_tcompayway>
+                <class>Inchoo_TComPayWay_Block</class>
+            </inchoo_tcompayway>
+        </blocks>
+        <payment>
+            <groups>
+                <inchoo_tcompayway>T-Com Pay Way</inchoo_tcompayway>
+            </groups>
+        </payment>
+    </global>
+    <frontend>
+        <routers>
+            <inchoo_tcompayway>
+                <use>standard</use>
+                <args>
+                    <module>Inchoo_TComPayWay</module>
+                    <frontName>inchoo_tcompayway</frontName>
+                </args>
+            </inchoo_tcompayway>
+        </routers>
+        <translate>
+            <modules>
+                <Inchoo_TComPayWay>
+                    <files>
+                        <default>Inchoo_TComPayWay.csv</default>
+                    </files>
+                </Inchoo_TComPayWay>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <inchoo_tcompayway>
+                    <file>inchoo_tcompayway.xml</file>
+                </inchoo_tcompayway>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+         <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <inchoo_tcompayway after="Mage_Adminhtml">Inchoo_TComPayWay</inchoo_tcompayway>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Inchoo_TComPayWay>
+                    <files>
+                        <default>Inchoo_TComPayWay.csv</default>
+                    </files>
+                </Inchoo_TComPayWay>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <inchoo_tcompayway>
+                    <file>inchoo_tcompayway.xml</file>
+                </inchoo_tcompayway>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <payment>
+            <inchoo_tcompayway_redirect>
+                <active>0</active>
+                <model>inchoo_tcompayway/redirect</model>
+                <title><![CDATA[T-Com Pay Way Redirect]]></title>
+                <order_status><![CDATA[pending]]></order_status>
+                <payed_order_status><![CDATA[processing]]></payed_order_status>
+                <canceled_order_status><![CDATA[canceled]]></canceled_order_status>
+                <auto_invoice_payed_order>0</auto_invoice_payed_order>
+                <auto_ship_invoiced_order>0</auto_ship_invoiced_order>
+                <debug_mode>0</debug_mode>
+                <post_url><![CDATA[https://pgw.t-com.hr/payment.aspx]]></post_url>
+            </inchoo_tcompayway_redirect>
+        </payment>
+    </default>
+</config>
