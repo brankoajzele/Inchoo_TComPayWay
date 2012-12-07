@@ -11,27 +11,7 @@ class Inchoo_TComPayWay_RedirectController extends Mage_Core_Controller_Front_Ac
      */
     public function redirectAction()
     {
-//        $session = Mage::getSingleton('checkout/session');
-        //$session->setTComPayWayRedirectQuoteId($session->getQuoteId());
-        
         $this->getResponse()->setBody($this->getLayout()->createBlock('inchoo_tcompayway/redirect_form_submit')->toHtml());
-        
-        
-        /**
-         * Mage_Checkout_Model_Type_Onepage -> saveOrder()
-         *
-         * Check the line that says:
-         * $redirectUrl = $this->getQuote()->getPayment()->getOrderPlaceRedirectUrl();
-         *
-         * Before the redirect to 3rd party payment system, order info is set into session:
-         *
-         * $this->_checkoutSession->setLastOrderId($order->getId())
-         *      ->setRedirectUrl($redirectUrl)
-         *      ->setLastRealOrderId($order->getIncrementId());
-         */
-        
-        //$session->unsQuoteId();
-//        $session->unsRedirectUrl();
     }
 
     /**
