@@ -34,11 +34,6 @@
                 <class>Inchoo_TComPayWay_Block</class>
             </inchoo_tcompayway>
         </blocks>
-        <payment>
-            <groups>
-                <inchoo_tcompayway>T-Com Pay Way</inchoo_tcompayway>
-            </groups>
-        </payment>
     </global>
     <frontend>
         <routers>
